@@ -6,7 +6,21 @@
 package com.sig.view;
 
 
+
+
+import com.sig.model.jScrollPanel;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
+
 public class frame1 extends javax.swing.JFrame {
+
+    private char[] et;
+    private char[] t;
 
     /**
      * Creates new form frame1
@@ -26,6 +40,8 @@ public class frame1 extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        menuBar1 = new java.awt.MenuBar();
+        menu1 = new java.awt.Menu();
         jScrollPane1 = new javax.swing.JScrollPane();
         Header = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -42,12 +58,21 @@ public class frame1 extends javax.swing.JFrame {
         invoiceDate = new javax.swing.JLabel();
         invoiceName = new javax.swing.JLabel();
         invoiceTotal = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
         jMenuItem1.setText("load files");
 
         jMenuItem2.setText("save files");
+
+        menu1.setLabel("File");
+        menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu1ActionPerformed(evt);
+            }
+        });
+        menuBar1.add(menu1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,9 +89,19 @@ public class frame1 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Header);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("create new invoice");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Delete Invoce");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Invoive Num:");
 
@@ -87,9 +122,19 @@ public class frame1 extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(Line);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Save");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Customer Name: ");
 
@@ -129,8 +174,7 @@ public class frame1 extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(invoiceTotal)
-                                            .addComponent(invoiceName))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE))
+                                            .addComponent(invoiceName)))))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -141,7 +185,7 @@ public class frame1 extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(158, 158, 158)
                         .addComponent(jButton4)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +228,70 @@ public class frame1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Jbutton btn =new Jbutton ("new invoice");
+       btn.addActionLitener(this);
+       
+       this.pack();
+       this.setVisible(true);
+      
+        
+       
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      Jbutton btn4 =new Jbutton ("Cancel");
+       btn4.addActionLitener(this);
+       
+       this.pack();
+       this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
+        {
+            JfileChooser f1=new JfileChooser();
+            f1.showSaveDailog(this);
+            File ff=f1.getSelectedFile();
+            try {
+                FileWriter fw = new FileWriter(ff);
+                string t =txtData.getText();
+                
+                fw.close();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(frame1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+         jScrollPanel p = new jScrollPanel ();
+    if(evt.getSource()== p) {
+        JFileChooser f =new JFileChooser();
+        f.showOpenDialog(null);
+    }
+    if(evt.getSource()== p) {
+        JFileChooser f =new JFileChooser();
+        f.showOpenDialog(null);
+    }
+    }//GEN-LAST:event_menu1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ Jbutton btn3 =new Jbutton ("Save");
+       btn3.addActionLitener(this);
+       
+       this.pack();
+       this.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ Jbutton btn1 =new Jbutton ("Delete");
+       btn1.addActionLitener(this);
+       
+       this.pack();
+       this.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +330,7 @@ public class frame1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Header;
     private javax.swing.JTable Line;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel invoiceDate;
     private javax.swing.JLabel invoiceName;
     private javax.swing.JLabel invoiceNum;
@@ -240,5 +349,17 @@ public class frame1 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.Menu menu1;
+    private java.awt.MenuBar menuBar1;
     // End of variables declaration//GEN-END:variables
+
+    private static class txtData {
+
+        private static string getText() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public txtData() {
+        }
+    }
 }
